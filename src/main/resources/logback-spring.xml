@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <!-- 项目名称，需修改 -->
+    <property name="applicationName" value="horseloft-jpa"/>
+
+    <!--数据源-->
+    <property resource="application.properties"/>
+
+    <!-- 日志存储路径 -->
+    <property name="logDir" value="/tmp/log/${applicationName}"/>
+
+    <!-- 日志存储天数 -->
+    <property name="maxHistory" value="10"/>
+
+    <!-- 日志存储格式 -->
+    <property name="consoleLogPattern"
+              value="[%yellow(%date)] %highlight(%-5level) | %m%n"/>
+
+    <property name="logPattern"
+              value="[timestamp=%d{yyyy-MM-dd HH:mm:ss.SSS}] [level=%-5level] %m%n"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${consoleLogPattern}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <!-- DEBUG级别日志 -->
+    <appender name="debugFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>false</append>
+        <file>${logDir}/debug.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logDir}/debug/debuglog.%d{yyyyMMdd}.log.gz</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${logPattern}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- INFO级别日志 -->
+    <appender name="infoFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>false</append>
+        <file>${logDir}/info.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logDir}/info/infolog.%d{yyyyMMdd}.log.gz</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${logPattern}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- WARN级别日志 此级别日志只允许框架打印-->
+    <appender name="warnFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>false</append>
+        <file>${logDir}/warn.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logDir}/warn/warnlog.%d{yyyyMMdd}.log.gz</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${logPattern}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ERROR级别日志 -->
+    <appender name="errorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>false</append>
+        <file>${logDir}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logDir}/error/errorlog.%d{yyyyMMdd}.log.gz</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${logPattern}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="console"/>
+        <appender-ref ref="infoFile"/>
+        <appender-ref ref="warnFile"/>
+        <appender-ref ref="errorFile"/>
+    </logger>
+
+
+    <if condition='property("spring.profiles.active").contains("dev")'>
+        <then>
+            <logger name="com.horseloft.jpa" level="DEBUG" additivity="false">
+                <appender-ref ref="console"/>
+                <appender-ref ref="infoFile"/>
+                <appender-ref ref="warnFile"/>
+                <appender-ref ref="errorFile"/>
+            </logger>
+        </then>
+    </if>
+
+    <if condition='property("spring.profiles.active").contains("beta")'>
+        <then>
+            <logger name="com.horseloft.jpa" level="DEBUG" additivity="false">
+                <appender-ref ref="console"/>
+                <appender-ref ref="infoFile"/>
+                <appender-ref ref="warnFile"/>
+                <appender-ref ref="errorFile"/>
+            </logger>
+        </then>
+    </if>
+
+    <if condition='property("spring.profiles.active").contains("production")'>
+        <then>
+            <logger name="com.horseloft.jpa" level="INFO" additivity="false">
+                <appender-ref ref="console"/>
+                <appender-ref ref="infoFile"/>
+                <appender-ref ref="warnFile"/>
+                <appender-ref ref="errorFile"/>
+            </logger>
+        </then>
+    </if>
+
+    <root>
+        <!--线上最好使用debug级别然后console日志 >> /dev/null -->
+        <level value="INFO"/>
+        <!-- 控制台输出 -->
+        <appender-ref ref="console"/>
+        <!-- 文件输出 -->
+        <appender-ref ref="errorFile"/>
+        <appender-ref ref="warnFile"/>
+        <appender-ref ref="infoFile"/>
+        <!--    <if condition='p("logLevel").contains("dev")'>-->
+        <!--      <then>-->
+        <!--        <appender-ref ref="debugFile"/>-->
+        <!--      </then>-->
+        <!--    </if>-->
+    </root>
+
+</configuration>

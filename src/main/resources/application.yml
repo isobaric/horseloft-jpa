@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        #debug时显示sql
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              #trace时，显示参数
+              BasicBinder: trace
