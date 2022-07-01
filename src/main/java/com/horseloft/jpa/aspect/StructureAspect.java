@@ -102,7 +102,6 @@ public class StructureAspect {
     }
 
     //参数只有id的 查询 删除等操作的验证
-    @SuppressWarnings("unchecked")
     private void requestIdHandle (String daoName, JSONArray jsonParams) {
         Long id = ((JSONObject) jsonParams.get(0)).getLong("id");
         if (id == null) {
@@ -110,7 +109,7 @@ public class StructureAspect {
         }
 
         //bean不存在抛出异常 |
-        CrudRepository crud = this.getDaoByName(daoName);
+        CrudRepository<?, Long> crud = this.getDaoByName(daoName);
         Object data = crud.findById(id).orElse(null);
         if (data == null) {
             throw new BusinessException(ResponseCode.PARAMETER_ERROR.getCode(), "组织架构数据不存在");
@@ -154,7 +153,7 @@ public class StructureAspect {
      * @param daoName
      * @return
      */
-    private CrudRepository getDaoByName(String daoName) {
+    private CrudRepository<?, Long> getDaoByName(String daoName) {
         if ("userDao".equals(daoName)) {
             return userDao;
         }
