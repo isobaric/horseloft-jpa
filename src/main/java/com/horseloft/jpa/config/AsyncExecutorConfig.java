@@ -20,6 +20,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 @EnableAsync
 @Configuration
+@SuppressWarnings("NullableProblems")
 public class AsyncExecutorConfig implements AsyncConfigurer {
 
     @Bean(name = "asyncServiceExecutor")

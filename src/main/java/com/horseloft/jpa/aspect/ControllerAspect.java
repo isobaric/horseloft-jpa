@@ -70,7 +70,7 @@ public class ControllerAspect {
                     String pwd = ((JSONObject) jsonObject.get(0)).getString("password");
                     if (StringUtils.isNotBlank(pwd)) {
                         Object object = getParameter[0];
-                        Class cls = object.getClass();
+                        Class<?> cls = object.getClass();
                         if (!cls.getName().contains("java.")) {
                             Field field = cls.getDeclaredField("password");
                             field.setAccessible(true);

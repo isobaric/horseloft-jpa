@@ -99,19 +99,19 @@ public class CommonController {
 
     @PostMapping("/districtList")
     @ApiOperation(value = "行政区列表 [已完成]", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<List<DistrictResponseVo>> getDistrictList(@RequestBody RequestVo params) {
+    public ResponseVo<List<DistrictResponseVo>> getDistrictList() {
         return districtService.getDistrictAll();
     }
 
     @PostMapping("/deviceTypeList")
     @ApiOperation(value = "设备类型列表 [已完成]", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<List<DeviceTypeResponseVo>> getDeviceTypeList(@RequestBody RequestVo params) {
+    public ResponseVo<List<DeviceTypeResponseVo>> getDeviceTypeList() {
         return deviceTypeService.getDeviceTypeList();
     }
 
     @PostMapping("/stationTypeList")
     @ApiOperation(value = "工位类型列表 [已完成]", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<List<StationTypeResponseVo>> getStationTypeList(@RequestBody RequestVo params) {
+    public ResponseVo<List<StationTypeResponseVo>> getStationTypeList() {
         return publicService.getAllStationTypeList();
     }
 

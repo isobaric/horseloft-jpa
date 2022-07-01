@@ -24,6 +24,7 @@ import java.util.Set;
  * Desc: Controller的增强处理
  */
 @ControllerAdvice
+@SuppressWarnings("NullableProblems")
 public class RequestControllerAdvice implements RequestBodyAdvice {
 
     /**

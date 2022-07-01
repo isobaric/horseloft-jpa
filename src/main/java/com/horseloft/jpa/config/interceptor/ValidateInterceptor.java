@@ -35,6 +35,7 @@ import java.util.Set;
  * Desc: 请求验证/拦截
  */
 @Slf4j
+@SuppressWarnings("NullableProblems")
 public class ValidateInterceptor implements HandlerInterceptor {
 
     @Autowired
