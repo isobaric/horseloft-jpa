@@ -72,7 +72,7 @@ public class ShelfController {
     @Structure(JpaDao.SHELF)
     @PostMapping("/empty")
     @ApiOperation(value = "腾空货架", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<String> shelfSetEmpty(@Valid @RequestBody RequestIdVo params) {
+    public ResponseVo<String> shelfSetEmpty() {
         return ResponseVo.ofSuccess();
     }
 

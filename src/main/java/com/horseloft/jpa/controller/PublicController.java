@@ -45,7 +45,7 @@ public class PublicController {
     // ================ 以下非接口 =================
     @PostMapping("/code")
     @ApiOperation(value = "状态码说明", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<CodeStatusVo> codeStatus(@RequestBody RequestVo params) {
+    public ResponseVo<CodeStatusVo> codeStatus() {
         return ResponseVo.ofSuccess();
     }
 }
