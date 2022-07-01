@@ -3,7 +3,6 @@ package com.horseloft.jpa.controller;
 import com.horseloft.jpa.service.ResourceNodeService;
 import com.horseloft.jpa.service.RoleService;
 import com.horseloft.jpa.vo.RequestIdVo;
-import com.horseloft.jpa.vo.RequestVo;
 import com.horseloft.jpa.vo.ResponseIdVo;
 import com.horseloft.jpa.vo.ResponseVo;
 import com.horseloft.jpa.vo.node.NodeInfoResponseVo;
@@ -55,7 +54,7 @@ public class RoleController {
 
     @PostMapping("/resourceList")
     @ApiOperation(value = "角色资源列表 [已完成]", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<List<NodeInfoResponseVo>> getRoleResourceList(@RequestBody RequestVo params) {
-        return resourceNodeService.getAllResourceNodeList(params);
+    public ResponseVo<List<NodeInfoResponseVo>> getRoleResourceList() {
+        return resourceNodeService.getAllResourceNodeList();
     }
 }

@@ -198,7 +198,7 @@ public class ShelfService {
      */
     public void shelfListDownload(ShelfListRequestVo params, HttpServletResponse response) throws Exception {
         Specification<Shelf> specification = this.shelfSpecification(params);
-        if (specification instanceof Specification) {
+        if (specification != null) {
             Sort sort = Sort.by(Sort.Order.asc("id"));
             List<Shelf> shelfPage = shelfDao.findAll(specification, sort);
             if (shelfPage.isEmpty()) {
@@ -220,7 +220,7 @@ public class ShelfService {
         listVo.setPage(params.getPage());
         listVo.setPageSize(params.getPageSize());
         Specification<Shelf> specification = this.shelfSpecification(params);
-        if (specification instanceof Specification) {
+        if (specification != null) {
             Sort sort = Sort.by(Sort.Order.asc("id"));
             Pageable pageable = PageRequest.of(params.getPage() - 1, params.getPageSize(), sort);
             Page<Shelf> shelfPage = shelfDao.findAll(specification, pageable);
@@ -275,7 +275,7 @@ public class ShelfService {
         }
 
         //是否空货箱|2物料编号 4物料名称 搜索时默认为搜索的是非空货箱 则跳过空货箱的搜索条件
-        if (params.getEmptyStatus() != null && shelfIds.isEmpty()) {
+        if (params.getEmptyStatus() != null) {
             if (params.getEmptyStatus()) {
                 slotList = slotDao.getEmptySlots();
             } else {
@@ -288,7 +288,7 @@ public class ShelfService {
         slotList.forEach(x -> shelfIds.add(x.getShelfId()));
         String finalShelfCode = shelfCode;
 
-        return (Specification<Shelf>) (root, query, criteriaBuilder) -> {
+        return (root, query, criteriaBuilder) -> {
             List<Predicate> list = new ArrayList<>();
             //组织架构|非超级管理员角色
             if (!params.getUser().getRoleId().contains(RoleConstant.ADMIN_ROLE_ID_STR)) {

@@ -232,7 +232,7 @@ public class DeviceService {
 
     //设备列表查询条件
     private Specification<Device> deviceSpecification(DeviceListRequestVo params) {
-        return (Specification<Device>) (root, query, criteriaBuilder) -> {
+        return (root, query, criteriaBuilder) -> {
             List<Predicate> list = new ArrayList<>();
             //查询条件
             list.add(criteriaBuilder.equal(root.get("deleteStatus").as(Integer.class), 0));

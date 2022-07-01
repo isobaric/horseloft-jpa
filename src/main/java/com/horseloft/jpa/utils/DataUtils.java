@@ -18,9 +18,6 @@ public class DataUtils {
      */
     public static boolean isDefaultRole(@NotNull Long roleId) {
         //管理员、工人
-        if (roleId.equals(RoleConstant.ADMIN_ROLE_ID) || roleId.equals(RoleConstant.WORKER_ROLE_ID)) {
-            return true;
-        }
-        return false;
+        return roleId.equals(RoleConstant.ADMIN_ROLE_ID) || roleId.equals(RoleConstant.WORKER_ROLE_ID);
     }
 }

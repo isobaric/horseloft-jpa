@@ -93,8 +93,8 @@ public class CommonController {
 
     @PostMapping("/roleList")
     @ApiOperation(value = "角色列表 [已完成]", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<List<RoleInfoResponseVo>> getRoleList(@RequestBody RequestVo params) {
-        return roleService.getRoleList(params);
+    public ResponseVo<List<RoleInfoResponseVo>> getRoleList() {
+        return roleService.getRoleList();
     }
 
     @PostMapping("/districtList")

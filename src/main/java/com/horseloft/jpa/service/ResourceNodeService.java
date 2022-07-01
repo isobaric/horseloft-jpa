@@ -41,7 +41,7 @@ public class ResourceNodeService {
     public ResponseVo<List<NodeInfoResponseVo>> getUserNodeList(RequestVo params) {
         //区分超级管理员
         if (params.getUser().getRoleId().contains(RoleConstant.ADMIN_ROLE_ID_STR)) {
-            return this.getAllResourceNodeList(params);
+            return this.getAllResourceNodeList();
         }
         //当前用户的角色权限
         List<Long> userRoleIds = ConvertUtils.strToListLong(params.getUser().getRoleId(), ",");
@@ -72,10 +72,9 @@ public class ResourceNodeService {
 
     /**
      * 资源节点树形结构列表
-     * @param params
      * @return
      */
-    public ResponseVo<List<NodeInfoResponseVo>> getAllResourceNodeList(RequestVo params) {
+    public ResponseVo<List<NodeInfoResponseVo>> getAllResourceNodeList() {
         List<ResourceNode> firstNodeList = resourceNodeDao.getAllRankNode(1);
         if (firstNodeList.isEmpty()) {
             return ResponseVo.ofSuccess(new ArrayList<>());

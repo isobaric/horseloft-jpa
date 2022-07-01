@@ -10,7 +10,6 @@ import com.horseloft.jpa.utils.ConvertUtils;
 import com.horseloft.jpa.utils.DataUtils;
 import com.horseloft.jpa.utils.StringUtils;
 import com.horseloft.jpa.vo.RequestIdVo;
-import com.horseloft.jpa.vo.RequestVo;
 import com.horseloft.jpa.vo.ResponseIdVo;
 import com.horseloft.jpa.vo.ResponseVo;
 import com.horseloft.jpa.vo.role.RoleAddRequestVo;
@@ -126,10 +125,9 @@ public class RoleService {
 
     /**
      * 角色列表
-     * @param params
      * @return
      */
-    public ResponseVo<List<RoleInfoResponseVo>> getRoleList(RequestVo params) {
+    public ResponseVo<List<RoleInfoResponseVo>> getRoleList() {
         List<Role> roleList = roleDao.getActiveRoleExcludeAdmins();
         if (roleList.isEmpty()) {
             return ResponseVo.ofSuccess(new ArrayList<>());

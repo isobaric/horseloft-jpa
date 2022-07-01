@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Date: 2020/1/29 下午2:22
@@ -41,7 +42,7 @@ public class PictureService {
             return ResponseVo.ofError("上传不能为空");
         }
         //文件后缀
-        String suffix = file.getContentType().substring(file.getContentType().indexOf("/") + 1);
+        String suffix = Objects.requireNonNull(file.getContentType()).substring(file.getContentType().indexOf("/") + 1);
         //存储路径
         String filePath = FileConstant.FILE_UPLOAD_PATH + System.currentTimeMillis() + RandomUtils.nextInt(1000, 9999) + "." + suffix;
         //存储路径生成文件

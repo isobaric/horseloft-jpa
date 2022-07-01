@@ -451,7 +451,7 @@ public class UserService {
 
     //用户列表查询条件
     private Specification<User> userListSpecification(UserListRequestVo params) {
-        return (Specification<User>) (root, query, criteriaBuilder) -> {
+        return (root, query, criteriaBuilder) -> {
             List<Predicate> list = new ArrayList<>();
             //超级管理员不展示
             list.add(criteriaBuilder.gt(root.get("id").as(Long.class), UserConstant.ADMIN_USER_ID));
@@ -539,7 +539,7 @@ public class UserService {
                     roleString.append(role.getRoleName()).append(",");
                 }
             }
-            userListResponseVo.setRoleName(roleString.toString().substring(0, roleString.length() - 1));
+            userListResponseVo.setRoleName(roleString.substring(0, roleString.length() - 1));
 
             //组织架构|格式：公司名-工厂名-车间名
             String structureName = publicService.getStructureName(listMap, user.getCompanyId(),user.getFactoryId(), user.getWorkshopId());

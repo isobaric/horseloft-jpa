@@ -654,9 +654,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     @SuppressWarnings("unused")
     public static Date getBeginDayOfWeek() {
         Date date = new Date();
-        if (date == null) {
-            return null;
-        }
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int dayofweek = cal.get(Calendar.DAY_OF_WEEK);

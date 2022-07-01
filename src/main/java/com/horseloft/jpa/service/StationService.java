@@ -165,7 +165,7 @@ public class StationService {
 
     //工位列表查询条件
     private Specification<Station> stationSpecification(StationListRequestVo params) {
-        return (Specification<Station>) (root, query, criteriaBuilder) -> {
+        return (root, query, criteriaBuilder) -> {
             List<Predicate> list = new ArrayList<>();
 
             //组织架构

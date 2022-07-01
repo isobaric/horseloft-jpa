@@ -50,7 +50,6 @@ public class ParamsUtils {
     /**
      * 密码验证|数字或字母或组合 长度大于等于6
      * @param password
-     * @param roleId
      * @return
      */
     public static boolean isUserPassword(@NotNull String password) {
@@ -74,10 +73,7 @@ public class ParamsUtils {
         if (StringUtils.isBlank(telephone)) {
             return false;
         }
-        if (isMobile(telephone) || isFixedTelephone(telephone)) {
-            return true;
-        }
-        return false;
+        return isMobile(telephone) || isFixedTelephone(telephone);
     }
 
     /**
@@ -120,10 +116,7 @@ public class ParamsUtils {
         if (StringUtils.isBlank(name)) {
             return false;
         }
-        if (isChineseName(name) || isEnglishName(name))  {
-            return true;
-        }
-        return false;
+        return isChineseName(name) || isEnglishName(name);
     }
 
     /**
@@ -171,9 +164,6 @@ public class ParamsUtils {
             return false;
         }
         fileType = fileType.toLowerCase();
-        if (!fileType.equals("image/png") && !fileType.equals("image/gif") && !fileType.equals("image/jpg") && !fileType.equals("image/jpeg")) {
-            return false;
-        }
-        return true;
+        return fileType.equals("image/png") || fileType.equals("image/gif") || fileType.equals("image/jpg") || fileType.equals("image/jpeg");
     }
 }
