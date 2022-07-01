@@ -47,7 +47,7 @@ public class MaterialUnitController {
 
     @PostMapping("/list")
     @ApiOperation(value = "列表", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<ResponseListVo<MaterialUnitListVo>> getMaterialUnitList(@Valid @RequestBody RequestVo params) {
-        return materialUintService.getMaterialUnitList(params);
+    public ResponseVo<ResponseListVo<MaterialUnitListVo>> getMaterialUnitList() {
+        return materialUintService.getMaterialUnitList();
     }
 }

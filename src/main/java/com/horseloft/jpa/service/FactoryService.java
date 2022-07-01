@@ -144,7 +144,7 @@ public class FactoryService {
             return ResponseVo.ofError("不能删除公司的最后一个工厂");
         }
 
-        //TODO 存在未完成的订单、订单未回款 不可删除 【尚未开发到订单、回款功能】
+        //TODO 存在未完成的订单、订单未回款 不可删除
 
         //存在有效员工不可删除
         User user = userDao.getActiveSingleUserByFactoryId(params.getId());

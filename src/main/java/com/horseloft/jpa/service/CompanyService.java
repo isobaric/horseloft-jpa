@@ -222,7 +222,7 @@ public class CompanyService {
             workshopFinallyMap.merge(x.getFactoryId(), 1, Integer::sum);
         });
 
-        //TODO 存在未完成的订单、订单未回款 不可删除 【尚未开发到订单、回款功能】
+        //TODO 存在未完成的订单、订单未回款 不可删除
 
         //存在有效员工不可删除||车间存在有效员工 不可删除车间、工厂、公司|工厂存在有效员工 不可删除工厂、公司|公司存在有效员工 不可删除工厂
         Set<Long> enableWorkshopSet = new HashSet<>();
@@ -357,7 +357,7 @@ public class CompanyService {
             return ResponseVo.ofError("您要删除的公司信息不存在");
         }
 
-        //TODO 存在未完成的订单、订单未回款 不可删除 【尚未开发到订单、回款功能】
+        //TODO 存在未完成的订单、订单未回款 不可删除 
 
         //存在有效员工不可删除||车间存在有效员工 不可删除车间、工厂、公司|工厂存在有效员工 不可删除工厂、公司|公司存在有效员工 不可删除工厂
         User user = userDao.getActiveSingleUserByCompanyId(params.getId());

@@ -117,13 +117,13 @@ public class CommonController {
 
     @PostMapping("/materialTypeList")
     @ApiOperation(value = "物料类型列表 [已完成]", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<List<MaterialTypeCommonVo>> getMaterialTypeList(@RequestBody RequestVo params) {
-        return materialTypeService.getCommonMaterialTypeList(params);
+    public ResponseVo<List<MaterialTypeCommonVo>> getMaterialTypeList() {
+        return materialTypeService.getCommonMaterialTypeList();
     }
 
     @PostMapping("/materialUnitList")
     @ApiOperation(value = "物料主单位列表 [已完成]", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<List<MaterialUnitCommonVo>> getMaterialUnitList(@RequestBody RequestVo params) {
-        return materialUintService.getCommonMaterialUnitList(params);
+    public ResponseVo<List<MaterialUnitCommonVo>> getMaterialUnitList() {
+        return materialUintService.getCommonMaterialUnitList();
     }
 }

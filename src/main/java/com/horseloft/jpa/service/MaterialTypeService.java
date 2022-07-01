@@ -202,10 +202,9 @@ public class MaterialTypeService {
 
     /**
      * 物料类型列表
-     * @param params
      * @return
      */
-    public ResponseVo<ResponseListVo<MaterialTypeListVo>> getAllMaterialTypeList(RequestVo params) {
+    public ResponseVo<ResponseListVo<MaterialTypeListVo>> getAllMaterialTypeList() {
         ResponseListVo<MaterialTypeListVo> listVo = new ResponseListVo<>();
         List<MaterialType> materialTypeList = materialTypeDao.getAllMaterialType();
         if (materialTypeList.isEmpty()) {
@@ -242,10 +241,9 @@ public class MaterialTypeService {
 
     /**
      * 通用接口-物料类型列表
-     * @param params
      * @return
      */
-    public ResponseVo<List<MaterialTypeCommonVo>> getCommonMaterialTypeList(RequestVo params) {
+    public ResponseVo<List<MaterialTypeCommonVo>> getCommonMaterialTypeList() {
         Iterable<MaterialType> materialTypes = materialTypeDao.findAll();
         List<MaterialTypeCommonVo> voList = new ArrayList<>();
         for (MaterialType materialType : materialTypes) {

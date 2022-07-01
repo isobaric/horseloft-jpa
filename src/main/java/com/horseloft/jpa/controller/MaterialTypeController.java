@@ -47,7 +47,7 @@ public class MaterialTypeController {
 
     @PostMapping("/list")
     @ApiOperation(value = "物料类型列表", httpMethod = "POST", produces = "application/json;charset=UTF-8")
-    public ResponseVo<ResponseListVo<MaterialTypeListVo>> getMaterialTypeList(@Valid @RequestBody RequestVo params) {
-        return materialTypeService.getAllMaterialTypeList(params);
+    public ResponseVo<ResponseListVo<MaterialTypeListVo>> getMaterialTypeList() {
+        return materialTypeService.getAllMaterialTypeList();
     }
 }

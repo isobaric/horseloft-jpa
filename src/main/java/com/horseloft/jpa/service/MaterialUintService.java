@@ -109,10 +109,9 @@ public class MaterialUintService {
 
     /**
      * 物料单位列表
-     * @param params
      * @return
      */
-    public ResponseVo<ResponseListVo<MaterialUnitListVo>> getMaterialUnitList(RequestVo params) {
+    public ResponseVo<ResponseListVo<MaterialUnitListVo>> getMaterialUnitList() {
         ResponseListVo<MaterialUnitListVo> listVo = new ResponseListVo<>();
         List<MaterialUnit> unitList = materialUnitDao.findAllByOrderByIdDesc();
 
@@ -130,10 +129,9 @@ public class MaterialUintService {
 
     /**
      * 通用-物料单位列表
-     * @param params
      * @return
      */
-    public ResponseVo<List<MaterialUnitCommonVo>> getCommonMaterialUnitList(RequestVo params) {
+    public ResponseVo<List<MaterialUnitCommonVo>> getCommonMaterialUnitList() {
         List<MaterialUnitCommonVo> list = new ArrayList<>();
         List<MaterialUnit> unitList = materialUnitDao.findAllByOrderByIdAsc();
 
